@@ -41,18 +41,13 @@ public class Operator extends Arithmetic {
      * @return 结果
      */
     public Float operate(Float num1, Float num2) {
-        switch (this.value) {
-            case "+":
-                return num1 + num2;
-            case "-":
-                return num1 - num2;
-            case "×":
-                return num1 * num2;
-            case "÷":
-                return num1 / num2;
-            default:
-                return 0f;
-        }
+        return switch (this.value) {
+            case "+" -> num1 + num2;
+            case "-" -> num1 - num2;
+            case "×" -> num1 * num2;
+            case "÷" -> num1 / num2;
+            default -> 0f;
+        };
     }
 
     /**
@@ -73,25 +68,18 @@ public class Operator extends Arithmetic {
     }
 
     /**
-     *
      * @param index 运算符号类型
      * @return 返回对应的运算符号对象
      */
     public static Operator getByIndex(int index) {
-        switch (index) {
-            case 0:
-                return Operator.EQUAL;
-            case 1:
-                return Operator.PLUS;
-            case 2:
-                return Operator.MINUS;
-            case 3:
-                return Operator.MULTIPLY;
-            case 4:
-                return Operator.DIVIDE;
-            default:
-                return null;
-        }
+        return switch (index) {
+            case 0 -> Operator.EQUAL;
+            case 1 -> Operator.PLUS;
+            case 2 -> Operator.MINUS;
+            case 3 -> Operator.MULTIPLY;
+            case 4 -> Operator.DIVIDE;
+            default -> null;
+        };
     }
 
     public int getPriority() {
