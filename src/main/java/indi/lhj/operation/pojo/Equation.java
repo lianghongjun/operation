@@ -123,17 +123,17 @@ public class Equation {
                         }
                     }
                     // 比较两对数字
-                    if ((operands1.get(0).equals(operands2.get(0)) || operands1.get(0).equals(operands2.get(1)))
-                            && (operands1.get(1).equals(operands2.get(0)) || operands1.get(1).equals(operands2.get(1)))) {
+                    if ((operands1.get(0).equals(operands2.get(0)) || operands1.get(0).equals(operands2.get(1))) &&
+                            (operands1.get(1).equals(operands2.get(0)) || operands1.get(1).equals(operands2.get(1)))) {
                         list.remove(equation);
                         //remove会整体前移
                         i--;
                     }
                     // 两对数字不相同,保留
-                    break flag;
+                    break;
                 } else {
                     //结果不一样,保留
-                    break flag;
+                    break;
                 }
             }
 
@@ -310,9 +310,9 @@ public class Equation {
      */
     public List<Operand> getOperands() {
         List<Operand> operands = new ArrayList<>();
-        for (int j = 0; j < postfix.size(); j++) {
-            if (postfix.get(j) instanceof Operand) {
-                operands.add((Operand) (postfix.get(j)));
+        for (Arithmetic arithmetic : postfix) {
+            if (arithmetic instanceof Operand) {
+                operands.add((Operand) arithmetic);
             }
         }
         return operands;
