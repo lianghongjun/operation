@@ -20,12 +20,19 @@ public class Main {
 
     public static void main(String[] args) {
         processArgs(args);
-        if (e != null && a != null) {
-            // 分析答案
-            analyse(e, a, "Grade.txt");
-        } else if (r != null && n != null) {
+        System.out.println(r);
+        System.out.println(n);
+        System.out.println(e);
+        System.out.println(a);
+        if (e != null && a != null && r != null && n != null) {
+
             // 生成题目
             generateExercise(n, r);
+
+            // 分析答案
+            analyse(e, a, "Grade.txt");
+
+
         } else {
             System.out.println("参数错误,请重新启动并输入正确参数");
         }
@@ -46,16 +53,16 @@ public class Main {
         // 记录对错情况
         List<String> corrects = new ArrayList<>();
         List<String> wrongs = new ArrayList<>();
-        if (answers != null) {
-            for (int i = 0; i < answers.size(); i++) {
-                if (exercises != null && Math.abs(answers.get(i) - exercises.get(i).getResult()) < 0.000001) {
-                    corrects.add(i + "");
-                }
+        for (int i = 0; i < answers.size(); i++) {
+            if (Math.abs(answers.get(i) - exercises.get(i).getResult()) < 0.000001) {
+                corrects.add(i + "");
+            } else {
+                wrongs.add(i + "");
             }
         }
         String sb1 = "Correct:" + corrects.size() + "(" +
                 String.join(",", corrects) + ")";
-        String sb2 = "Wrong:" + 0 + "(" +
+        String sb2 = "Wrong:" + wrongs.size() + "(" +
                 String.join(",", wrongs) + ")";
         FileUtils.write(gradePath, Arrays.asList(sb1, sb2));
     }
@@ -93,6 +100,7 @@ public class Main {
                 case "-a" -> a = args[i + 1];
             }
         }
+
     }
 
     /**
