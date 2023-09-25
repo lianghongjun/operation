@@ -53,11 +53,11 @@ public class Main {
         // 记录对错情况
         List<String> corrects = new ArrayList<>();
         List<String> wrongs = new ArrayList<>();
-        for (int i = 0; i < answers.size(); i++) {
-            if (Math.abs(answers.get(i) - exercises.get(i).getResult()) < 0.000001) {
-                corrects.add(i + "");
-            } else {
-                wrongs.add(i + "");
+        if (answers != null) {
+            for (int i = 0; i < answers.size(); i++) {
+                if (exercises != null && Math.abs(answers.get(i) - exercises.get(i).getResult()) < 0.000001) {
+                    corrects.add(i + "");
+                }
             }
         }
         String sb1 = "Correct:" + corrects.size() + "(" +
